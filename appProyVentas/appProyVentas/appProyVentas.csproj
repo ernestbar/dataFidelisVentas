@@ -364,6 +364,7 @@
     <Content Include="assets\img\login-bg\login-bg-9-thumb.jpg" />
     <Content Include="assets\img\login-bg\login-bg-9.jpg" />
     <Content Include="assets\img\logo\bannerportafolio.png" />
+    <Content Include="assets\img\logo\login_fondo.jpg" />
     <Content Include="assets\img\logo\logo-admin-apple.png" />
     <Content Include="assets\img\logo\logo-admin-transparent.png" />
     <Content Include="assets\img\logo\logo-admin.png" />

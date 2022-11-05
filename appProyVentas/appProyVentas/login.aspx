@@ -6,7 +6,7 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta charset="utf-8" />
-	<title>Ingreso</title>
+	<title>Lec Decor</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -38,10 +38,10 @@
 		<div class="login login-with-news-feed">
 			<!-- begin news-feed -->
 			<div class="news-feed">
-				<video src="video1.mp4" autoplay muted loop></video>
-				<%--<div class="news-image" style="background-image: url(assets/img/login-bg/fondo_login.jpg)"></div>--%>
+				<%--<video src="video1.mp4" autoplay muted loop></video>--%>
+				<div class="news-image" style="background-image: url(assets/img/logo/login_fondo.jpg)"></div>
 				<div class="news-caption">
-					<h4 class="caption-title"><b>Porta</b>folio</h4>
+					<h4 class="caption-title"><b>Sistema</b> Lec Decor</h4>
 					<p>
 						Sistema.
 					</p>
@@ -52,7 +52,7 @@
 			<div class="right-content">
 				<!-- begin login-header -->
 				<div class="login-header">
-					<img src="assets/img/logo/logo_suiza_fidelis.png"  width="380"/>
+					<img src="assets/img/logo/LOGO_VENTAS.jpg"  width="380"/>
 						
 				
 					<div class="icon">
@@ -97,7 +97,7 @@
 						</div>--%>
 						<hr />
 						<p class="text-center text-grey-darker">
-							&copy; Portafolio All Right Reserved 2020
+							&copy; Lec Decor All Right Reserved 2020
 						</p>
 					
 				</div>
