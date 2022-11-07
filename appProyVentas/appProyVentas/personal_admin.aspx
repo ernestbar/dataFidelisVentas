@@ -176,7 +176,7 @@
 					<div class="form-group row m-b-10">
 						<label class="col-md-3 text-md-right col-form-label">Supervisor inmediato:</label>
 						<div class="col-md-6">
-                           <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="ddlSupervisor" InitialValue="SELECCIONAR" Font-Bold="True"></asp:RequiredFieldValidator>
+                           <%--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="ddlSupervisor" InitialValue="SELECCIONAR" Font-Bold="True"></asp:RequiredFieldValidator>--%>
 						   <asp:DropDownList ID="ddlSupervisor" DataSourceID="odsPersonalClientes" DataTextField="nombre_completo" OnDataBound="ddlSupervisor_DataBound" DataValueField="cod_personal"  ForeColor="Black" class="form-control" runat="server"></asp:DropDownList>  
 						</div>
 					</div>
@@ -275,14 +275,13 @@
 					</div>
 					<!-- end form-group row -->
 					<!-- begin form-group row -->
-					<div class="form-group row m-b-10">
+				<%--	<div class="form-group row m-b-10">
 						<label class="col-md-3 text-md-right col-form-label">Nombre usuario:</label>
 						<div class="col-md-6">
-                            <%--<asp:CheckBox ID="cbPadre"  class="form-control" AutoPostBack="true" Text="SI/NO" OnCheckedChanged="cbPadre_CheckedChanged" Checked="true" runat="server" />--%>
 							 <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtUsuario" Font-Bold="True"></asp:RequiredFieldValidator>
                              <asp:TextBox ID="txtUsuario" runat="server" class="form-control" ForeColor="Black" placeholder="NOMBRE USUARIO"></asp:TextBox>
 						</div>
-					</div>
+					</div>--%>
 					<!-- end form-group row -->
 					<!-- begin form-group row -->
 					<%--<div class="form-group row m-b-10">
@@ -307,7 +306,7 @@
 					<div class="form-group row m-b-10">
 						<label class="col-md-3 text-md-right col-form-label">Fecha desde:</label>
 						<div class="col-md-6">
-							<asp:Label ID="lblFechaDesde" runat="server" Text=""></asp:Label>
+							<asp:Label ID="lblFechaDesde" Visible="false" runat="server" Text=""></asp:Label>
 						    <input id="fecha_salida" class="form-control" onfocus="bloquear()" style="background:#ecf1fa" type="date"><asp:HiddenField ID="hfFechaSalida" runat="server" />
 						</div>
 					</div>
@@ -316,7 +315,7 @@
 					<div class="form-group row m-b-10">
 						<label class="col-md-3 text-md-right col-form-label">Fecha hasta:</label>
 						<div class="col-md-6">
-							<asp:Label ID="lblFechaHasta" runat="server" Text=""></asp:Label>
+							<asp:Label ID="lblFechaHasta" Visible="false" runat="server" Text=""></asp:Label>
 						    <input id="fecha_retorno" class="form-control" onfocus="bloquear()" style="background:#ecf1fa" type="date"><asp:HiddenField ID="hfFechaRetorno" runat="server" />
 						</div>
 					</div>
@@ -457,6 +456,11 @@
             document.getElementById('<%=hfFechaSalida.ClientID%>').value = document.getElementById('fecha_salida').value;
                 document.getElementById('<%=hfFechaRetorno.ClientID%>').value = document.getElementById('fecha_retorno').value;
 		}
-        
+        function setearFechaSalida() {
+            document.getElementById('fecha_salida').value = document.getElementById('<%=hfFechaSalida.ClientID%>').value;
+		}
+        function setearFechaRetorno() {
+            document.getElementById('fecha_retorno').value = document.getElementById('<%=hfFechaRetorno.ClientID%>').value;
+        }
     </script>
 </asp:Content>

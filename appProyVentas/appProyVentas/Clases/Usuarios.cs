@@ -14,7 +14,7 @@ namespace appProyVentas.Clases
         #region Propiedades
         //Propiedades privadas
         private string _PV_TIPO_OPERACION = "";
-        
+
         private string _PV_COD_PERSONAL = "";
         private string _PV_SUPERVISOR_INMEDIATO = "";
         private string _PV_COD_SUCURSAL = "";
@@ -23,9 +23,9 @@ namespace appProyVentas.Clases
         private string _PV_NUMERO_DOCUMENTO = "";
         private string _PV_EXPEDIDO = "";
         private string _PV_COD_CARGO = "";
-        private int _PN_CELULAR = 0;
-        private int _PN_FIJO = 0;
-        private int _PN_INTERNO = 0;
+        private Int64 _PN_CELULAR = 0;
+        private Int64 _PN_FIJO = 0;
+        private Int64 _PN_INTERNO = 0;
         private string _PV_EMAIL = "";
 
         private string _PV_USUARIOI = "";
@@ -36,7 +36,7 @@ namespace appProyVentas.Clases
         private DateTime _PD_FECHA_HASTA = DateTime.Now;
         private string _PV_ROL = "";
         private string _PV_USUARIO = "";
-        
+
         private string _PV_EMAILOUT = "";
         private string _PV_DESCRIPCIONPR = "";
         private string _PV_ERROR = "";
@@ -52,12 +52,12 @@ namespace appProyVentas.Clases
         public string PV_NUMERO_DOCUMENTO { get { return _PV_NUMERO_DOCUMENTO; } set { _PV_NUMERO_DOCUMENTO = value; } }
         public string PV_EXPEDIDO { get { return _PV_EXPEDIDO; } set { _PV_EXPEDIDO = value; } }
         public string PV_COD_CARGO { get { return _PV_COD_CARGO; } set { _PV_COD_CARGO = value; } }
-               
-        public int PN_CELULAR { get { return _PN_CELULAR; } set { _PN_CELULAR = value; } }
-        public int PN_FIJO { get { return _PN_FIJO; } set { _PN_FIJO = value; } }
-        public int PN_INTERNO { get { return _PN_INTERNO; } set { _PN_INTERNO = value; } }
+
+        public Int64 PN_CELULAR { get { return _PN_CELULAR; } set { _PN_CELULAR = value; } }
+        public Int64 PN_FIJO { get { return _PN_FIJO; } set { _PN_FIJO = value; } }
+        public Int64 PN_INTERNO { get { return _PN_INTERNO; } set { _PN_INTERNO = value; } }
         public string PV_EMAIL { get { return _PV_EMAIL; } set { _PV_EMAIL = value; } }
-        
+
         public string PV_USUARIOI { get { return _PV_USUARIOI; } set { _PV_USUARIOI = value; } }
         public string PV_PASSWORD { get { return _PV_PASSWORD; } set { _PV_PASSWORD = value; } }
         public string PV_PASSWORD_ANTERIOR { get { return _PV_PASSWORD_ANTERIOR; } set { _PV_PASSWORD_ANTERIOR = value; } }
@@ -76,17 +76,17 @@ namespace appProyVentas.Clases
         #endregion
 
         #region Constructores
-        public Usuarios(string pV_USUARIO,string pV_COD_PERSONAL)
+        public Usuarios(string pV_USUARIO, string pV_COD_PERSONAL)
         {
             _PV_USUARIO = pV_USUARIO;
             _PV_COD_PERSONAL = pV_COD_PERSONAL;
             RecuperarDatos();
         }
-        public Usuarios(string pV_TIPO_OPERACION, string pV_COD_PERSONAL,string pV_SUPERVISOR_INMEDIATO,
-            string pV_COD_SUCURSAL,string pV_NOMBRE_COMPLETO,string pV_TIPO_DOCUMENTO,string pV_NUMERO_DOCUMENTO,
-            string pV_EXPEDIDO,string pV_COD_CARGO,int pN_CELULAR,int pN_FIJO,int pN_INTERNO,string pV_EMAIL,
-            string pV_USUARIOI,string pV_PASSWORD,string pV_PASSWORD_ANTERIOR,string pV_DESCRIPCION,
-            DateTime pD_FECHA_DESDE,DateTime pD_FECHA_HASTA,string pV_ROL,string pV_USUARIO)
+        public Usuarios(string pV_TIPO_OPERACION, string pV_COD_PERSONAL, string pV_SUPERVISOR_INMEDIATO,
+            string pV_COD_SUCURSAL, string pV_NOMBRE_COMPLETO, string pV_TIPO_DOCUMENTO, string pV_NUMERO_DOCUMENTO,
+            string pV_EXPEDIDO, string pV_COD_CARGO, Int64 pN_CELULAR, Int64 pN_FIJO, Int64 pN_INTERNO, string pV_EMAIL,
+            string pV_USUARIOI, string pV_PASSWORD, string pV_PASSWORD_ANTERIOR, string pV_DESCRIPCION,
+            DateTime pD_FECHA_DESDE, DateTime pD_FECHA_HASTA, string pV_ROL, string pV_USUARIO)
         {
             _PV_TIPO_OPERACION = pV_TIPO_OPERACION;
             _PV_COD_PERSONAL = pV_COD_PERSONAL;
@@ -113,7 +113,7 @@ namespace appProyVentas.Clases
         }
         #endregion
         #region Métodos que NO requieren constructor
-        public static string PR_SEG_CAMBIOPASSWORD(string PV_COD_USUARIO, string PV_PASSWORDANTERIOR,string PV_PASSWORDNUEVO,string PV_USUARIO)
+        public static string PR_SEG_CAMBIOPASSWORD(string PV_COD_USUARIO, string PV_PASSWORDANTERIOR, string PV_PASSWORDNUEVO, string PV_USUARIO)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace appProyVentas.Clases
             }
             catch (Exception ex)
             {
-                return ex.ToString()+"||";
+                return ex.ToString() + "||";
             }
 
         }
@@ -176,7 +176,7 @@ namespace appProyVentas.Clases
             return db1.ExecuteDataSet(cmd).Tables[0];
         }
 
-        public static DataTable PR_SEG_GET_MENUS_ROL(string PV_USUARIO, Int64 COD_MENU_PADRE,string PV_SISTEMA)
+        public static DataTable PR_SEG_GET_MENUS_ROL(string PV_USUARIO, Int64 COD_MENU_PADRE, string PV_SISTEMA)
         {
             DbCommand cmd = db1.GetStoredProcCommand("PR_SEG_GET_MENUS_ROL");
             db1.AddInParameter(cmd, "pv_usuario", DbType.String, PV_USUARIO);
@@ -319,6 +319,10 @@ namespace appProyVentas.Clases
                     {
                         foreach (DataRow dr in dt.Rows)
                         {
+                            if (string.IsNullOrEmpty(dr["SUPERVISOR_INMEDIATO"].ToString()))
+                            { _PV_SUPERVISOR_INMEDIATO = ""; }
+                            else
+                            { _PV_SUPERVISOR_INMEDIATO = (string)dr["SUPERVISOR_INMEDIATO"]; }
                             _PV_COD_PERSONAL = (string)dr["COD_PERSONAL"];
                             _PV_NOMBRE_COMPLETO = (string)dr["NOMBRE_COMPLETO"];
                             _PV_TIPO_DOCUMENTO = (string)dr["TIPO_DOCUMENTO"];
@@ -326,9 +330,9 @@ namespace appProyVentas.Clases
                             _PV_EXPEDIDO = (string)dr["EXPEDIDO"];
                             _PV_COD_CARGO = (string)dr["COD_CARGO"];
                             _PV_COD_SUCURSAL = (string)dr["COD_SUCURSAL"];
-                            _PN_CELULAR = int.Parse(dr["CELULAR"].ToString());
-                            _PN_FIJO = int.Parse(dr["FIJO"].ToString());
-                            _PN_INTERNO = int.Parse(dr["INTERNO"].ToString());
+                            _PN_CELULAR = Int64.Parse(dr["CELULAR"].ToString());
+                            _PN_FIJO = Int64.Parse(dr["FIJO"].ToString());
+                            _PN_INTERNO = Int64.Parse(dr["INTERNO"].ToString());
                             _PV_EMAIL = (string)dr["EMAIL"];
                         }
                     }
@@ -349,18 +353,21 @@ namespace appProyVentas.Clases
                 DbCommand cmd = db1.GetStoredProcCommand("PR_ABM_USUARIOS");
                 db1.AddInParameter(cmd, "PV_TIPO_OPERACION", DbType.String, _PV_TIPO_OPERACION);
                 db1.AddInParameter(cmd, "PV_COD_PERSONAL", DbType.String, _PV_COD_PERSONAL);
-                db1.AddInParameter(cmd, "PV_SUPERVISOR_INMEDIATO", DbType.String, _PV_SUPERVISOR_INMEDIATO);
+                if (_PV_SUPERVISOR_INMEDIATO == "SELECCIONAR")
+                    db1.AddInParameter(cmd, "PV_SUPERVISOR_INMEDIATO", DbType.String, null);
+                else
+                    db1.AddInParameter(cmd, "PV_SUPERVISOR_INMEDIATO", DbType.String, _PV_SUPERVISOR_INMEDIATO);
                 db1.AddInParameter(cmd, "PV_COD_SUCURSAL", DbType.String, _PV_COD_SUCURSAL);
                 db1.AddInParameter(cmd, "PV_NOMBRE_COMPLETO", DbType.String, _PV_NOMBRE_COMPLETO);
                 db1.AddInParameter(cmd, "PV_TIPO_DOCUMENTO", DbType.String, _PV_TIPO_DOCUMENTO);
                 db1.AddInParameter(cmd, "PV_NUMERO_DOCUMENTO", DbType.String, _PV_NUMERO_DOCUMENTO);
                 db1.AddInParameter(cmd, "PV_EXPEDIDO", DbType.String, _PV_EXPEDIDO);
                 db1.AddInParameter(cmd, "PV_COD_CARGO", DbType.String, _PV_COD_CARGO);
-                db1.AddInParameter(cmd, "PN_CELULAR", DbType.Int32, _PN_CELULAR);
-                db1.AddInParameter(cmd, "PN_FIJO", DbType.Int32, _PN_FIJO);
-                db1.AddInParameter(cmd, "PN_INTERNO", DbType.Int32, _PN_INTERNO);
+                db1.AddInParameter(cmd, "PN_CELULAR", DbType.Int64, _PN_CELULAR);
+                db1.AddInParameter(cmd, "PN_FIJO", DbType.Int64, _PN_FIJO);
+                db1.AddInParameter(cmd, "PN_INTERNO", DbType.Int64, _PN_INTERNO);
                 db1.AddInParameter(cmd, "PV_EMAIL", DbType.String, _PV_EMAIL);
-                
+
                 db1.AddInParameter(cmd, "PV_USUARIOI", DbType.String, _PV_USUARIOI);
                 db1.AddInParameter(cmd, "PV_PASSWORD", DbType.String, _PV_PASSWORD);
                 db1.AddInParameter(cmd, "PV_PASSWORD_ANTERIOR", DbType.String, _PV_PASSWORD_ANTERIOR);

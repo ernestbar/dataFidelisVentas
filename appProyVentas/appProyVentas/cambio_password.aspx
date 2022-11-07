@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 	<div id="content" class="content">
 			<asp:Label ID="lblUsuario" runat="server" Visible="false" Text=""></asp:Label> 
+		<asp:Label ID="lblCodServidor" runat="server" Visible="false" Text=""></asp:Label> 
 			<asp:Label ID="lblAviso" runat="server" ForeColor="Blue" Font-Size="Medium" Text=""></asp:Label>
     <!-- begin row -->
 			<div class="row">
