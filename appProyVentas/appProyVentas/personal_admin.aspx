@@ -342,7 +342,7 @@
 										<!-- begin page-header -->
 											<h1 class="page-header">Administrar Usuarios<small></small></h1>
 												<!-- begin form-group row -->
-												
+												<asp:Button ID="btnVolverPersonal" CssClass="btn btn-success"  runat="server" CausesValidation="false" OnClick="btnVolverPersonal_Click" Text="Volver a personal" />
 											
 												<!-- end form-group row -->
 											<!-- end page-header -->

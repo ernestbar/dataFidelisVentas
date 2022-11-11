@@ -7,7 +7,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 
 namespace appProyVentas.Clases
 {
-    public class clientes
+    public class Clientes
     {
         //Base de datos
         private static Database db1 = DatabaseFactory.CreateDatabase(ConfigurationManager.AppSettings["conn"]);
@@ -403,7 +403,7 @@ namespace appProyVentas.Clases
 
         //    RecuperarDatos();
         //}
-        public clientes( string pV_TIPO_OPERACION ,  string pV_TIPO_CLIENTE ,  string pV_COD_CLIENTE ,
+        public Clientes( string pV_TIPO_OPERACION ,  string pV_TIPO_CLIENTE ,  string pV_COD_CLIENTE ,
             string pV_NOMBRE , string pV_SEGUNDO_NOMBRE, string pV_TERCER_NOMBRE,
         string pV_APELLIDO_P ,string pV_APELLIDO_M ,string pV_APELLIDO_MA ,
         string pV_SEXO ,string pV_LUG_NAC , string pV_NACIONALIDAD, 

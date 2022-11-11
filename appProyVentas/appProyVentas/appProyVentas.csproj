@@ -3355,7 +3355,7 @@
     <Compile Include="cambio_password.aspx.designer.cs">
       <DependentUpon>cambio_password.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Clases\clientes.cs" />
+    <Compile Include="Clases\Clientes.cs" />
     <Compile Include="Clases\Dominios.cs" />
     <Compile Include="Clases\enviar_correo.cs" />
     <Compile Include="Clases\Menus.cs" />
