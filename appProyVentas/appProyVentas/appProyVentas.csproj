@@ -43,8 +43,50 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.Interfaces">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\EPPlus.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus.System.Drawing">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\EPPlus.System.Drawing.dll</HintPath>
+    </Reference>
     <Reference Include="GMaps">
       <HintPath>..\..\..\dataFidelisSW\proyDataFidelis\bin\GMaps.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.barcodes">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\itext.barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.commons">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\itext.commons.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.forms">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\itext.forms.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.io">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\itext.io.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.kernel">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\itext.kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.layout">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\itext.layout.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfa">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\itext.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.sign">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\itext.sign.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.styledxmlparser">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\itext.styledxmlparser.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.svg">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\itext.svg.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\..\..\lograSA\appLograAdmin\bin\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
@@ -3333,6 +3375,7 @@
     <Content Include="assets\plugins\slimscroll\jquery.slimscroll.js" />
     <Content Include="assets\plugins\slimscroll\jquery.slimscroll.min.js" />
     <Content Include="cambio_password.aspx" />
+    <Content Include="clientes_admin.aspx" />
     <Content Include="dashboard.aspx" />
     <Content Include="dominio_admin.aspx" />
     <Content Include="Global.asax" />
@@ -3342,6 +3385,7 @@
     <Content Include="opciones_admin.aspx" />
     <Content Include="opcion_menu_rol_admin.aspx" />
     <Content Include="personal_admin.aspx" />
+    <Content Include="precios_admin.aspx" />
     <Content Include="roles_admin.aspx" />
     <Content Include="sucursal_admin.aspx" />
     <Content Include="video1.mp4" />
@@ -3363,9 +3407,18 @@
     <Compile Include="Clases\Opciones.cs" />
     <Compile Include="Clases\Opciones_Menu_Rol.cs" />
     <Compile Include="Clases\Paises.cs" />
+    <Compile Include="Clases\Precios.cs" />
+    <Compile Include="Clases\Reportes.cs" />
     <Compile Include="Clases\Roles.cs" />
     <Compile Include="Clases\Sucursales.cs" />
     <Compile Include="Clases\Usuarios.cs" />
+    <Compile Include="clientes_admin.aspx.cs">
+      <DependentUpon>clientes_admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="clientes_admin.aspx.designer.cs">
+      <DependentUpon>clientes_admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3424,6 +3477,13 @@
     </Compile>
     <Compile Include="personal_admin.aspx.designer.cs">
       <DependentUpon>personal_admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="precios_admin.aspx.cs">
+      <DependentUpon>precios_admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="precios_admin.aspx.designer.cs">
+      <DependentUpon>precios_admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Principal.Master.cs">
       <DependentUpon>Principal.Master</DependentUpon>
