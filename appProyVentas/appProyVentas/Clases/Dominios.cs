@@ -8,7 +8,8 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 namespace appProyVentas.Clases
 {
     public class Dominios
-    { //Base de datos
+    { 
+        //Base de datos
         private static Database db1 = DatabaseFactory.CreateDatabase(ConfigurationManager.AppSettings["conn"]);
 
         #region Propiedades

@@ -3376,6 +3376,9 @@
     <Content Include="assets\plugins\slimscroll\jquery.slimscroll.min.js" />
     <Content Include="cambio_password.aspx" />
     <Content Include="clientes_admin.aspx" />
+    <Content Include="COLORES\AMARILLO.png" />
+    <Content Include="COLORES\ROJO.png" />
+    <Content Include="COLORES\VERDE.png" />
     <Content Include="dashboard.aspx" />
     <Content Include="dominio_admin.aspx" />
     <Content Include="Global.asax" />
@@ -3387,8 +3390,8 @@
     <Content Include="personal_admin.aspx" />
     <Content Include="precios_admin.aspx" />
     <Content Include="roles_admin.aspx" />
+    <Content Include="solicitudes_admin.aspx" />
     <Content Include="sucursal_admin.aspx" />
-    <Content Include="video1.mp4" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -3400,6 +3403,7 @@
       <DependentUpon>cambio_password.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clases\Clientes.cs" />
+    <Compile Include="Clases\Dashboard.cs" />
     <Compile Include="Clases\Dominios.cs" />
     <Compile Include="Clases\enviar_correo.cs" />
     <Compile Include="Clases\Menus.cs" />
@@ -3410,6 +3414,7 @@
     <Compile Include="Clases\Precios.cs" />
     <Compile Include="Clases\Reportes.cs" />
     <Compile Include="Clases\Roles.cs" />
+    <Compile Include="Clases\Solicitudes.cs" />
     <Compile Include="Clases\Sucursales.cs" />
     <Compile Include="Clases\Usuarios.cs" />
     <Compile Include="clientes_admin.aspx.cs">
@@ -3499,6 +3504,13 @@
     </Compile>
     <Compile Include="roles_admin.aspx.designer.cs">
       <DependentUpon>roles_admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="solicitudes_admin.aspx.cs">
+      <DependentUpon>solicitudes_admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="solicitudes_admin.aspx.designer.cs">
+      <DependentUpon>solicitudes_admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="sucursal_admin.aspx.cs">
       <DependentUpon>sucursal_admin.aspx</DependentUpon>
