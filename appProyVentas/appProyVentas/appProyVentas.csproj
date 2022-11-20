@@ -3382,6 +3382,26 @@
     <Content Include="dashboard.aspx" />
     <Content Include="dominio_admin.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="js\bootstrap-datepicker.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\custom-date-picker.js" />
+    <Content Include="js\custom-flex.js" />
+    <Content Include="js\custom-gallery.js" />
+    <Content Include="js\custom-navigation.js" />
+    <Content Include="js\custom-owl.js" />
+    <Content Include="js\custom-price-slider.js" />
+    <Content Include="js\custom-slick.js" />
+    <Content Include="js\custom-video.js" />
+    <Content Include="js\html2canvas.min.js" />
+    <Content Include="js\html2pdf.min.js" />
+    <Content Include="js\jquery-ui.min.js" />
+    <Content Include="js\jquery.colorpanel.js" />
+    <Content Include="js\jquery.flexslider.js" />
+    <Content Include="js\jquery.magnific-popup.min.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\jspdf.debug.js" />
+    <Content Include="js\owl.carousel.min.js" />
+    <Content Include="js\slick.min.js" />
     <Content Include="login.aspx" />
     <Content Include="menus_admin.aspx" />
     <Content Include="menu_rol_admin.aspx" />
@@ -3403,6 +3423,7 @@
       <DependentUpon>cambio_password.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clases\Clientes.cs" />
+    <Compile Include="Clases\Cotizaciones.cs" />
     <Compile Include="Clases\Dashboard.cs" />
     <Compile Include="Clases\Dominios.cs" />
     <Compile Include="Clases\enviar_correo.cs" />

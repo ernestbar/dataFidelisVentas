@@ -123,12 +123,12 @@ namespace appProyVentas
                 if (lblCodigo.Text == "")
                 {
                     Clases.Dominios dom = new Clases.Dominios("I", ddlDominio.SelectedValue, txtCodigo.Text, txtDescripcion.Text, "", 0, DateTime.Now, lblUsuario.Text);
-                    lblAviso.Text = dom.ABM();
+                    lblAviso.Text = dom.ABM().Replace("|", "").Replace("0", "").Replace("null", ""); ;
                 }
                 else
                 {
                     Clases.Dominios dom = new Clases.Dominios("U", lblDominio.Text, lblCodigo.Text, txtDescripcion.Text, "", 0, DateTime.Now, lblUsuario.Text);
-                    lblAviso.Text = dom.ABM();
+                    lblAviso.Text = dom.ABM().Replace("|", "").Replace("0", "").Replace("null", ""); ;
                 }
                 MultiView1.ActiveViewIndex = 0;
                 Repeater1.DataBind();

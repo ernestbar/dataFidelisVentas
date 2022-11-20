@@ -103,6 +103,46 @@ namespace appProyVentas.Clases
             }
 
         }
+        public static DataTable PR_SEG_GET_TELA_CORTINA(string CLI_TIPO_CORTINA)
+        {
+            try
+            {
+
+                DbCommand cmd = db1.GetStoredProcCommand("PR_SEG_GET_TELA_CORTINA");
+
+                db1.AddInParameter(cmd, "CLI_TIPO_CORTINA", DbType.String, CLI_TIPO_CORTINA);
+                cmd.CommandTimeout = int.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
+                return db1.ExecuteDataSet(cmd).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                DataTable dt = new DataTable();
+                return dt;
+            }
+
+        }
+
+        public static DataTable PR_SEG_GET_CENEFA(string CLI_TIPO_CORTINA,string CLI_TIPO_TELA_CORTINA)
+        {
+            try
+            {
+
+                DbCommand cmd = db1.GetStoredProcCommand("PR_SEG_GET_CENEFA");
+
+                db1.AddInParameter(cmd, "CLI_TIPO_CORTINA", DbType.String, CLI_TIPO_CORTINA);
+                db1.AddInParameter(cmd, "CLI_TIPO_TELA_CORTINA", DbType.String, CLI_TIPO_TELA_CORTINA);
+                cmd.CommandTimeout = int.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
+                return db1.ExecuteDataSet(cmd).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                DataTable dt = new DataTable();
+                return dt;
+            }
+
+        }
         public static DataTable PR_PAR_GET_PROCESOS(string PV_PROCESO_ASOCIADO)
         {
             try

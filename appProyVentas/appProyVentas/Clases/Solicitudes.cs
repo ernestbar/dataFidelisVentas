@@ -26,7 +26,7 @@ namespace appProyVentas.Clases
 
         private string _PV_USUARIO = "";
         private string _PV_ESTADOPR = "";
-        private string _PV_CONTACTOPR = "";
+        private string _PV_DESCRIPCIONPR = "";
         private string _PV_ERROR = "";
         //Propiedades públicas
         public string PV_TIPO_OPERACION { get { return _PV_TIPO_OPERACION; } set { _PV_TIPO_OPERACION = value; } }
@@ -41,7 +41,7 @@ namespace appProyVentas.Clases
 
         public string PV_USUARIO { get { return _PV_USUARIO; } set { _PV_USUARIO = value; } }
         public string PV_ESTADOPR { get { return _PV_ESTADOPR; } set { _PV_ESTADOPR = value; } }
-        public string PV_CONTACTOPR { get { return _PV_CONTACTOPR; } set { _PV_CONTACTOPR = value; } }
+        public string PV_DESCRIPCIONPR { get { return _PV_DESCRIPCIONPR; } set { _PV_DESCRIPCIONPR = value; } }
         public string PV_ERROR { get { return _PV_ERROR; } set { _PV_ERROR = value; } }
         #endregion
 
@@ -98,7 +98,7 @@ namespace appProyVentas.Clases
                 if (PV_OPERADOR=="")
                     db1.AddInParameter(cmd, "PV_OPERADOR", DbType.String, null);
                 else
-                    db1.AddInParameter(cmd, "PV_OPERADOR", DbType.String, "PV_OPERADOR");
+                    db1.AddInParameter(cmd, "PV_OPERADOR", DbType.String, PV_OPERADOR);
                 cmd.CommandTimeout = int.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
                 return db1.ExecuteDataSet(cmd).Tables[0];
             }
@@ -115,7 +115,7 @@ namespace appProyVentas.Clases
             try
             {
                 DbCommand cmd = db1.GetStoredProcCommand("PR_SEG_GET_ETAPAS");
-                db1.AddInParameter(cmd, "PV_SOLICITUD", DbType.String, "PV_SOLICITUD");
+                db1.AddInParameter(cmd, "PV_SOLICITUD", DbType.String, PV_SOLICITUD);
                 cmd.CommandTimeout = int.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
                 return db1.ExecuteDataSet(cmd).Tables[0];
             }
@@ -128,9 +128,27 @@ namespace appProyVentas.Clases
 
         }
 
-        
+        public static DataTable PR_SEG_GET_ETAPAS_DETALLE(Int64 PB_ID_ETAPA)
+        {
+            try
+            {
+                DbCommand cmd = db1.GetStoredProcCommand("PR_SEG_GET_ETAPAS_DETALLE");
+                db1.AddInParameter(cmd, "PB_ID_ETAPA", DbType.Int64, PB_ID_ETAPA);
+                cmd.CommandTimeout = int.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
+                return db1.ExecuteDataSet(cmd).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                DataTable dt = new DataTable();
+                return dt;
+            }
 
-        
+        }
+
+
+
+
 
 
         #endregion
@@ -203,41 +221,44 @@ namespace appProyVentas.Clases
                 // verificar_vacios();
                 DbCommand cmd = db1.GetStoredProcCommand("PR_SEG_ABM_SOLICITUDES");
                 db1.AddInParameter(cmd, "PV_TIPO_OPERACION", DbType.String, _PV_TIPO_OPERACION);
-                db1.AddInParameter(cmd, "PV_SOLICITUD", DbType.String, _PV_SOLICITUD);
-                db1.AddInParameter(cmd, "PV_CLI_ID_CLIENTE", DbType.String, _PV_CLI_ID_CLIENTE);
-                db1.AddInParameter(cmd, "PV_CONTACTO", DbType.String, _PV_CONTACTO);
-                db1.AddInParameter(cmd, "PV_TELEFONO", DbType.String, null);
-                if (_PV_TIPO_OPERACION == "D")
-                    db1.AddInParameter(cmd, "PV_UBICACION", DbType.DateTime, DateTime.Now);
+                if(_PV_SOLICITUD=="")
+                    db1.AddInParameter(cmd, "PV_SOLICITUD", DbType.String, null);
                 else
-                    db1.AddInParameter(cmd, "PV_UBICACION", DbType.DateTime, null);
-                db1.AddInParameter(cmd, "PV_CORREOELECTRONICO", DbType.Int32, null);
+                    db1.AddInParameter(cmd, "PV_SOLICITUD", DbType.String, _PV_SOLICITUD);
+                db1.AddInParameter(cmd, "PD_CLI_ID_CLIENTE", DbType.Int64, _PV_CLI_ID_CLIENTE);
+                db1.AddInParameter(cmd, "PV_CONTACTO", DbType.String, _PV_CONTACTO);
+                db1.AddInParameter(cmd, "PV_TELEFONO", DbType.String, _PV_TELEFONO);
+                db1.AddInParameter(cmd, "PV_CORREOELECTRONICO", DbType.String, _PV_CORREOELECTRONICO);
+                db1.AddInParameter(cmd, "PV_UBICACION", DbType.String, _PV_UBICACION);
+                db1.AddInParameter(cmd, "PV_COMENTARIOS", DbType.String, _PV_COMENTARIOS);
+                db1.AddInParameter(cmd, "pv_cadena", DbType.String, _PV_cadena);
+
                 db1.AddInParameter(cmd, "PV_USUARIO", DbType.String, _PV_USUARIO);
                 db1.AddOutParameter(cmd, "PV_ESTADOPR", DbType.String, 30);
-                db1.AddOutParameter(cmd, "PV_CONTACTOPR", DbType.String, 250);
+                db1.AddOutParameter(cmd, "PV_DESCRIPCIONPR", DbType.String, 250);
                 db1.AddOutParameter(cmd, "PV_ERROR", DbType.String, 250);
                 db1.ExecuteNonQuery(cmd);
                 if (String.IsNullOrEmpty(db1.GetParameterValue(cmd, "PV_ESTADOPR").ToString()))
                     PV_ESTADOPR = "";
                 else
                     PV_ESTADOPR = (string)db1.GetParameterValue(cmd, "PV_ESTADOPR");
-                if (String.IsNullOrEmpty(db1.GetParameterValue(cmd, "PV_CONTACTOPR").ToString()))
-                    PV_CONTACTOPR = "";
+                if (String.IsNullOrEmpty(db1.GetParameterValue(cmd, "PV_DESCRIPCIONPR").ToString()))
+                    PV_DESCRIPCIONPR = "";
                 else
-                    PV_CONTACTOPR = (string)db1.GetParameterValue(cmd, "PV_CONTACTOPR");
+                    PV_DESCRIPCIONPR = (string)db1.GetParameterValue(cmd, "PV_DESCRIPCIONPR");
                 if (String.IsNullOrEmpty(db1.GetParameterValue(cmd, "PV_ERROR").ToString()))
                     PV_ERROR = "";
                 else
                     PV_ERROR = (string)db1.GetParameterValue(cmd, "PV_ERROR");
 
 
-                resultado = PV_ESTADOPR + "|" + PV_CONTACTOPR + "|" + PV_ERROR;
+                resultado = PV_ESTADOPR + "|" + PV_DESCRIPCIONPR + "|" + PV_ERROR;
                 return resultado;
             }
             catch (Exception ex)
             {
                 //_error = ex.Message;
-                resultado = "Se produjo un error al registrar";
+                resultado = "|Se produjo un error al registrar|";
                 return resultado;
             }
         }
