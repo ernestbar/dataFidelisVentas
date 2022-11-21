@@ -77,8 +77,10 @@ namespace appProyVentas.Clases
             {
 
                 DbCommand cmd = db1.GetStoredProcCommand("PR_SEG_GET_SOLICITUD");
-
-                db1.AddInParameter(cmd, "PV_OPERADOR", DbType.String, PV_OPERADOR);
+                if(PV_OPERADOR=="")
+                    db1.AddInParameter(cmd, "PV_OPERADOR", DbType.String, null);
+                else
+                    db1.AddInParameter(cmd, "PV_OPERADOR", DbType.String, PV_OPERADOR);
                 cmd.CommandTimeout = int.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
                 return db1.ExecuteDataSet(cmd).Tables[0];
             }
@@ -158,9 +160,8 @@ namespace appProyVentas.Clases
         {
             try
             {
-                DbCommand cmd = db1.GetStoredProcCommand("PR_PAR_GET_SOLICITUDS_IND");
+                DbCommand cmd = db1.GetStoredProcCommand("PR_SEG_GET_SOLICITUD_IND");
                 db1.AddInParameter(cmd, "PV_SOLICITUD", DbType.String, _PV_SOLICITUD);
-                db1.AddInParameter(cmd, "PV_CLI_ID_CLIENTE", DbType.String, _PV_CLI_ID_CLIENTE);
                 cmd.CommandTimeout = int.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
                 DataTable dt = new DataTable();
                 dt = db1.ExecuteDataSet(cmd).Tables[0];
@@ -168,36 +169,31 @@ namespace appProyVentas.Clases
                 {
                     foreach (DataRow dr in dt.Rows)
                     {
-                        //if (string.IsNullOrEmpty(dr["dominio"].ToString()))
-                        //{ _PV_SOLICITUD = ""; }
-                        //else
-                        //{ _PV_SOLICITUD = (string)dr["dominio"]; }
+                        if (string.IsNullOrEmpty(dr["CLI_ID_CLIENTE"].ToString()))
+                        { _PV_CLI_ID_CLIENTE = 0; }
+                        else
+                        { _PV_CLI_ID_CLIENTE = Int64.Parse(dr["CLI_ID_CLIENTE"].ToString()); }
 
 
-                        //if (string.IsNullOrEmpty(dr["codigo"].ToString()))
-                        //{ _PV_CLI_ID_CLIENTE = 0; }
-                        //else
-                        //{ _PV_CLI_ID_CLIENTE = Int64.Parse(dr["codigo"]); }
+                        if (string.IsNullOrEmpty(dr["contacto"].ToString()))
+                        { _PV_CONTACTO = ""; }
+                        else
+                        { _PV_CONTACTO = (string)dr["contacto"]; }
 
-                        //if (string.IsNullOrEmpty(dr["descripcion"].ToString()))
-                        //{ _PV_CONTACTO = ""; }
-                        //else
-                        //{ _PV_CONTACTO = (string)dr["descripcion"]; }
+                        if (string.IsNullOrEmpty(dr["telefono"].ToString()))
+                        { _PV_TELEFONO = ""; }
+                        else
+                        { _PV_TELEFONO = (string)dr["telefono"]; }
 
-                        //if (string.IsNullOrEmpty(dr["valor_caracter"].ToString()))
-                        //{ _PV_TELEFONO = ""; }
-                        //else
-                        //{ _PV_TELEFONO = (string)dr["valor_caracter"]; }
+                        if (string.IsNullOrEmpty(dr["correoelectronico"].ToString()))
+                        { _PV_CORREOELECTRONICO = ""; }
+                        else
+                        { _PV_CORREOELECTRONICO = (string)dr["correoelectronico"]; }
 
-                        //if (string.IsNullOrEmpty(dr["valor_numerico"].ToString()))
-                        //{ _PV_CORREOELECTRONICO = ""; }
-                        //else
-                        //{ _PV_CORREOELECTRONICO = (string)dr["valor_numerico"]; }
-
-                        //if (string.IsNullOrEmpty(dr["valor_date"].ToString()))
-                        //{ _PV_UBICACION = ""; }
-                        //else
-                        //{ _PV_UBICACION = (string)dr["valor_date"]; }
+                        if (string.IsNullOrEmpty(dr["ubicacion"].ToString()))
+                        { _PV_UBICACION = ""; }
+                        else
+                        { _PV_UBICACION = (string)dr["ubicacion"]; }
 
 
 

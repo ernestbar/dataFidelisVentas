@@ -22,7 +22,7 @@ namespace appProyVentas.Clases
                 string strUserName = smtpSection.Network.UserName;
                 string strFromPass = smtpSection.Network.Password;
                 SmtpClient smtp = new SmtpClient(strHost, port);
-                NetworkCredential cert = new NetworkCredential(strUserName, strFromPass);
+                NetworkCredential cert = new NetworkCredential(strUserName, strFromPass);//strFromPass);
                 smtp.Credentials = cert;
                 smtp.EnableSsl = true;
                 MailMessage msg = new MailMessage(smtpSection.From, Email);

@@ -103,6 +103,25 @@ namespace appProyVentas.Clases
             }
 
         }
+
+        public static DataTable PR_SEG_GETCORTINA()
+        {
+            try
+            {
+
+                DbCommand cmd = db1.GetStoredProcCommand("PR_SEG_GETCORTINA");
+
+                cmd.CommandTimeout = int.Parse(ConfigurationManager.AppSettings["CommandTimeout"]);
+                return db1.ExecuteDataSet(cmd).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                DataTable dt = new DataTable();
+                return dt;
+            }
+
+        }
         public static DataTable PR_SEG_GET_TELA_CORTINA(string CLI_TIPO_CORTINA)
         {
             try

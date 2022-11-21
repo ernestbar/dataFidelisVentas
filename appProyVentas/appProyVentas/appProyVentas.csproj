@@ -414,6 +414,7 @@
     <Content Include="assets\img\logo\logo-bs4.png" />
     <Content Include="assets\img\logo\logo1.png" />
     <Content Include="assets\img\logo\logo_suiza_fidelis.png" />
+    <Content Include="assets\img\logo\pie_logo.jpg" />
     <Content Include="assets\img\product\product-1.png" />
     <Content Include="assets\img\product\product-2.png" />
     <Content Include="assets\img\product\product-3.png" />
@@ -3411,6 +3412,7 @@
     <Content Include="precios_admin.aspx" />
     <Content Include="roles_admin.aspx" />
     <Content Include="solicitudes_admin.aspx" />
+    <Content Include="solicitudes_supervisor.aspx" />
     <Content Include="sucursal_admin.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -3532,6 +3534,13 @@
     </Compile>
     <Compile Include="solicitudes_admin.aspx.designer.cs">
       <DependentUpon>solicitudes_admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="solicitudes_supervisor.aspx.cs">
+      <DependentUpon>solicitudes_supervisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="solicitudes_supervisor.aspx.designer.cs">
+      <DependentUpon>solicitudes_supervisor.aspx</DependentUpon>
     </Compile>
     <Compile Include="sucursal_admin.aspx.cs">
       <DependentUpon>sucursal_admin.aspx</DependentUpon>

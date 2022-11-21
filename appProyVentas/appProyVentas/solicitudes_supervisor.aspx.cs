@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace appProyVentas
 {
-    public partial class solicitudes_admin : System.Web.UI.Page
+    public partial class solicitudes_supervisor : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,7 +37,7 @@ namespace appProyVentas
 
                     //}
                     MultiView1.ActiveViewIndex = 0;
-                    Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD(lblUsuario.Text);
+                    Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD("");
                     Repeater1.DataBind();
                 }
             }
@@ -47,21 +47,22 @@ namespace appProyVentas
         {
             if (rblTipoSolicitud.SelectedValue == "ACTUALES")
             {
-                Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD(lblUsuario.Text);
+                Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD("");
                 Repeater1.DataBind();
             }
             else
             {
-                Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD_HIST(lblUsuario.Text);
+                Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD_HIST("");
                 Repeater1.DataBind();
             }
         }
+
         public void limpiar_datos()
         {
             lblCodSolicitud.Text = "";
             lblAviso.Text = "";
             txtUbicacionVentana.Text = "";
-            ddlTipoCortina.DataBind(); 
+            ddlTipoCortina.DataBind();
             ddlTipoTelaCortina.DataBind();
             txtAlto.Text = "";
             txtAncho.Text = "";
@@ -83,7 +84,7 @@ namespace appProyVentas
             MultiView1.ActiveViewIndex = 1;
         }
 
-      
+
 
         protected void ddlCliente_DataBound(object sender, EventArgs e)
         {
@@ -108,18 +109,18 @@ namespace appProyVentas
         protected void btnAgregarItem_Click(object sender, EventArgs e)
         {
             ListItem item1 = new ListItem();
-            item1.Text = txtUbicacionVentana.Text + " - " + ddlTipoCortina.SelectedItem.Text + " - " + ddlTipoTelaCortina.SelectedItem.Text + " - " + txtAlto.Text.Replace(",",".") + " - " + txtAncho.Text.Replace(",", ".") + " - " + ddlTipoCenefa.SelectedItem.Text + " - " + ddlEsMadera.SelectedItem.Text + " - " + ddlEsEncajonada.SelectedItem.Text + " - " + txtCantidadPanos.Text.Replace(",", ".") + " - " +txtObservaciones.Text;
+            item1.Text = txtUbicacionVentana.Text + " - " + ddlTipoCortina.SelectedItem.Text + " - " + ddlTipoTelaCortina.SelectedItem.Text + " - " + txtAlto.Text.Replace(",", ".") + " - " + txtAncho.Text.Replace(",", ".") + " - " + ddlTipoCenefa.SelectedItem.Text + " - " + ddlEsMadera.SelectedItem.Text + " - " + ddlEsEncajonada.SelectedItem.Text + " - " + txtCantidadPanos.Text.Replace(",", ".") + " - " + txtObservaciones.Text;
             item1.Value = txtUbicacionVentana.Text + ";" + ddlTipoCortina.SelectedValue + ";" + ddlTipoTelaCortina.SelectedValue + ";" + txtAlto.Text.Replace(",", ".") + ";" + txtAncho.Text.Replace(",", ".") + ";" + ddlTipoCenefa.SelectedValue + ";" + ddlEsMadera.SelectedValue + ";" + ddlEsEncajonada.SelectedValue + ";" + txtCantidadPanos.Text.Replace(",", ".") + ";" + txtObservaciones.Text;
             lbItems.Items.Add(item1);
             txtUbicacionVentana.Text = "";
             ddlTipoCortina.DataBind(); ddlTipoTelaCortina.DataBind();
-            txtAlto.Text = ""; 
+            txtAlto.Text = "";
             txtAncho.Text = "";
             ddlTipoCenefa.DataBind();
             ddlEsMadera.DataBind();
             ddlEsEncajonada.DataBind();
-            txtCantidadPanos.Text = ""; 
-            txtObservaciones.Text="";
+            txtCantidadPanos.Text = "";
+            txtObservaciones.Text = "";
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -151,7 +152,7 @@ namespace appProyVentas
                 Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD(lblUsuario.Text);
                 Repeater1.DataBind();
             }
-            
+
         }
 
         protected void btnVolverAlta_Click(object sender, EventArgs e)
@@ -190,7 +191,7 @@ namespace appProyVentas
                 string id = "";
                 Button obj = (Button)sender;
                 id = obj.CommandArgument.ToString();
-                Clases.Solicitudes obj1 = new Clases.Solicitudes("A", id, 0, "", "","", "", "", "", lblUsuario.Text);
+                Clases.Solicitudes obj1 = new Clases.Solicitudes("A", id, 0, "", "", "", "", "", "", lblUsuario.Text);
                 lblAviso.Text = obj1.ABM().Replace("|", "").Replace("0", "").Replace("null", "");
                 Repeater2.DataSource = Clases.Solicitudes.PR_SEG_GET_ETAPAS(id);
                 Repeater2.DataBind();
@@ -207,7 +208,7 @@ namespace appProyVentas
             }
         }
 
-        
+
 
         protected void btnGenerar_Click(object sender, EventArgs e)
         {
@@ -217,10 +218,10 @@ namespace appProyVentas
                 string[] datos;
                 Button obj = (Button)sender;
                 datos = obj.CommandArgument.ToString().Split('|');
-                Repeater4.DataSource = Clases.Cotizaciones.PR_SEG_GET_COTIZACION(datos[0],Int64.Parse(datos[1]));
+                Repeater4.DataSource = Clases.Cotizaciones.PR_SEG_GET_COTIZACION(datos[0], Int64.Parse(datos[1]));
                 Repeater4.DataBind();
                 MultiView1.ActiveViewIndex = 4;
-                Clases.Cotizaciones obj1=new Clases.Cotizaciones(datos[0], Int64.Parse(datos[1]));
+                Clases.Cotizaciones obj1 = new Clases.Cotizaciones(datos[0], Int64.Parse(datos[1]));
                 lblID.Text = obj1.PV_ID_ETAPA.ToString();
                 lblCliente.Text = obj1.PV_cliente;
                 lblCelular.Text = obj1.PV_celular;
@@ -259,7 +260,7 @@ namespace appProyVentas
                 string id = "";
                 Button obj = (Button)sender;
                 id = obj.CommandArgument.ToString();
-                Repeater2.DataSource= Clases.Solicitudes.PR_SEG_GET_ETAPAS(id);
+                Repeater2.DataSource = Clases.Solicitudes.PR_SEG_GET_ETAPAS(id);
                 Repeater2.DataBind();
                 MultiView1.ActiveViewIndex = 2;
 
@@ -278,7 +279,7 @@ namespace appProyVentas
         protected void btnVolverSolicitud_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 0;
-            Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD(lblUsuario.Text);
+            Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD("");
             Repeater1.DataBind();
         }
 
@@ -290,7 +291,7 @@ namespace appProyVentas
                 string id = "";
                 Button obj = (Button)sender;
                 id = obj.CommandArgument.ToString();
-                Repeater3.DataSource = Clases.Solicitudes.PR_SEG_GET_ETAPAS_DETALLE(Int64.Parse( id));
+                Repeater3.DataSource = Clases.Solicitudes.PR_SEG_GET_ETAPAS_DETALLE(Int64.Parse(id));
                 Repeater3.DataBind();
                 MultiView1.ActiveViewIndex = 3;
 
@@ -349,13 +350,13 @@ namespace appProyVentas
                 txtUbicacion.Text = sol.PV_UBICACION;
                 txtComentarios.Text = datos[2];
                 DataTable dt = new DataTable();
-                dt=Clases.Solicitudes.PR_SEG_GET_ETAPAS_DETALLE(Int64.Parse(datos[1]));
-                lbItems.Items.Clear();
+                dt = Clases.Solicitudes.PR_SEG_GET_ETAPAS_DETALLE(Int64.Parse(datos[1]));
+                lbItems.Dispose();
                 foreach (DataRow dr in dt.Rows)
                 {
                     ListItem item1 = new ListItem();
-                    item1.Text = dr["UBICACION_VENTANA"] + " - " + dr["tipo_cortina"] + " - " + dr["tela"] + " - " + dr["alto"].ToString().Replace(",", ".") + " - " + dr["ancho"].ToString().Replace(",", ".") + " - " + dr["cenefa"] + " - " + dr["es_cenefa_madera"] + " - " + dr["es_encajonada"] + " - " + dr["cantidad_panos"].ToString().Replace(",", ".") + " - " + dr["observacion"];
-                    item1.Value = dr["UBICACION_VENTANA"] + ";" + dr["tipo_cortina"] + ";" + dr["tela"] + ";" + dr["alto"].ToString().Replace(",",".") + ";" + dr["ancho"].ToString().Replace(",", ".") + ";" + dr["cenefa"] + ";" + dr["es_cenefa_madera"] + ";" + dr["es_encajonada"] + ";" + dr["cantidad_panos"].ToString().Replace(",", ".") + ";" + dr["observacion"];
+                    item1.Text = dr["UBICACION_VENTANA"] + " - " + dr["tipo_cortina"] + " - " + dr["tela"] + " - " + dr["alto"] + " - " + dr["ancho"] + " - " + dr["cenefa"] + " - " + dr["es_cenefa_madera"] + " - " + dr["es_encajonada"] + " - " + dr["cantidad_panos"] + " - " + dr["observacion"];
+                    item1.Value = dr["UBICACION_VENTANA"] + ";" + dr["tipo_cortina"] + ";" + dr["tela"] + ";" + dr["alto"] + ";" + dr["ancho"] + ";" + dr["cenefa"] + ";" + dr["es_cenefa_madera"] + ";" + dr["es_encajonada"] + ";" + dr["cantidad_panos"] + ";" + dr["observacion"];
                     lbItems.Items.Add(item1);
                 }
                 MultiView1.ActiveViewIndex = 1;

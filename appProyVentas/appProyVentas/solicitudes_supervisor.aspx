@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" ValidateRequest="false" AutoEventWireup="true" CodeBehind="solicitudes_admin.aspx.cs" Inherits="appProyVentas.solicitudes_admin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="solicitudes_supervisor.aspx.cs" Inherits="appProyVentas.solicitudes_supervisor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-      <asp:ObjectDataSource ID="odsClientesTodos" runat="server" SelectMethod="PR_SEG_GET_CLIENTES" TypeName="appProyVentas.Clases.Clientes">
+     <asp:ObjectDataSource ID="odsClientesTodos" runat="server" SelectMethod="PR_SEG_GET_CLIENTES" TypeName="appProyVentas.Clases.Clientes">
 		</asp:ObjectDataSource>
-	<asp:ObjectDataSource ID="odsTipoCortina" runat="server" SelectMethod="PR_SEG_GETCORTINA" TypeName="appProyVentas.Clases.Dominios">
+<asp:ObjectDataSource ID="odsTipoCortina" runat="server" SelectMethod="PR_SEG_GETCORTINA" TypeName="appProyVentas.Clases.Dominios">
     </asp:ObjectDataSource>
 	<asp:ObjectDataSource ID="odsOpcion" runat="server" SelectMethod="PR_PAR_GET_DOMINIOS" TypeName="appProyVentas.Clases.Dominios">
         <SelectParameters>
@@ -202,7 +202,6 @@
 						<div class="col-md-6">
                             <asp:TextBox ID="txtEmail" class="form-control" runat="server"></asp:TextBox>
 							<asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ControlToValidate="txtEmail" Font-Bold="True"></asp:RequiredFieldValidator>
-							<asp:RegularExpressionValidator  id="regEmail" ControlToValidate="txtEmail" Text="Email invalido" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Runat="server" />  
 						</div>
                         
 					</div>
@@ -261,7 +260,6 @@
 						<div class="col-md-6">
 							<asp:TextBox ID="txtAlto" class="form-control" runat="server"></asp:TextBox>
 							<asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ValidationGroup="items" ControlToValidate="txtAlto" Font-Bold="True"></asp:RequiredFieldValidator>
-							<asp:RegularExpressionValidator runat="server" ErrorMessage="* Solo numeros" ControlToValidate="txtAlto" ValidationExpression="^[1-9]\d*(\.\d+)?$"></asp:RegularExpressionValidator>
 						</div>
 					</div>
 					<!-- end form-group row -->
@@ -271,7 +269,6 @@
 						<div class="col-md-6">
 							<asp:TextBox ID="txtAncho" class="form-control" runat="server"></asp:TextBox>
 							<asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="*" ValidationGroup="items" ControlToValidate="txtAncho" Font-Bold="True"></asp:RequiredFieldValidator>
-							<asp:RegularExpressionValidator runat="server" ErrorMessage="* Solo numeros" ControlToValidate="txtAncho" ValidationExpression="^[1-9]\d*(\.\d+)?$"></asp:RegularExpressionValidator>
 						</div>
 					</div>
 					<!-- end form-group row -->
@@ -304,9 +301,8 @@
 					<div class="form-group row m-b-10">
 						<label class="col-md-3 text-md-right col-form-label">Cantidad panos:</label>
 						<div class="col-md-6">
-							<asp:TextBox ID="txtCantidadPanos" class="form-control" TextMode="Number" runat="server"></asp:TextBox>
+							<asp:TextBox ID="txtCantidadPanos" class="form-control" runat="server"></asp:TextBox>
 							<asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="*" ValidationGroup="items" ControlToValidate="txtCantidadPanos" Font-Bold="True"></asp:RequiredFieldValidator>
-							<asp:RegularExpressionValidator runat="server" ErrorMessage="* Solo numeros" ControlToValidate="txtCantidadPanos" ValidationExpression="^[1-9]\d*(\.\d+)?$"></asp:RegularExpressionValidator>
 						</div>
 					</div>
 					<!-- end form-group row -->
@@ -413,12 +409,12 @@
                                                         <asp:Repeater ID="Repeater2" OnItemDataBound="Repeater2_ItemDataBound"  runat="server">
 														<ItemTemplate>
 															<tr class="gradeA">
-																<td><asp:Label ID="lblRazonSocial" runat="server" Text='<%# Eval("solicitud") %>'></asp:Label></td>
-																<td><asp:Label ID="lblMedioContacto" runat="server" Text='<%# Eval("etapa") %>'></asp:Label></td>
-																<td><asp:Label ID="lblValor" runat="server" Text='<%# Eval("operador_etapa") %>'></asp:Label></td>
-																<td><asp:Label ID="Label1" runat="server" Text='<%# Eval("fecha_desde") %>'></asp:Label></td>
-																<td><asp:Label ID="Label22" runat="server" Text='<%# Eval("fecha_hasta") %>'></asp:Label></td>
-																<td><asp:Label ID="Label12" runat="server" Text='<%# Eval("comentarios") %>'></asp:Label></td>
+																<td><asp:Label ID="Label2" runat="server" Text='<%# Eval("solicitud") %>'></asp:Label></td>
+																<td><asp:Label ID="Label3" runat="server" Text='<%# Eval("etapa") %>'></asp:Label></td>
+																<td><asp:Label ID="Label4" runat="server" Text='<%# Eval("operador_etapa") %>'></asp:Label></td>
+																<td><asp:Label ID="Label5" runat="server" Text='<%# Eval("fecha_desde") %>'></asp:Label></td>
+																<td><asp:Label ID="Label6" runat="server" Text='<%# Eval("fecha_hasta") %>'></asp:Label></td>
+																<td><asp:Label ID="Label7" runat="server" Text='<%# Eval("comentarios") %>'></asp:Label></td>
 																<td>
 																	<asp:Button ID="btnEditar" class="btn btn-success btn-sm" CommandArgument='<%# Eval("solicitud") +"|"+ Eval("id_etapa") +"|"+ Eval("comentarios") %>' OnClick="btnEditar_Click" runat="server" Text="Editar" ToolTip="Editar Solicitud" Visible='<%# Eval("EDITAR").ToString().Equals("SI".ToString()) ? Convert.ToBoolean(1) : Convert.ToBoolean(0) %>' />
 																	<asp:Button ID="btnCancelar" class="btn btn-success btn-sm"  CommandArgument='<%# Eval("solicitud") %>' OnClientClick="return confirm('Seguro que desea CANCELAR la solicitud???')" OnClick="btnCancelar_Click" runat="server" Text="Cancelar" ToolTip="Cancelar etapa" Visible='<%# Eval("CANCELAR").ToString().Equals("SI".ToString()) ? Convert.ToBoolean(1) : Convert.ToBoolean(0) %>' />
@@ -485,17 +481,17 @@
                                                         <asp:Repeater ID="Repeater3"  runat="server">
 														<ItemTemplate>
 															<tr class="gradeA">
-																<td><asp:Label ID="lblRazonSocial" runat="server" Text='<%# Eval("solicitud") %>'></asp:Label></td>
-																<td><asp:Label ID="lblMedioContacto" runat="server" Text='<%# Eval("tipo_cortina") %>'></asp:Label></td>
-																<td><asp:Label ID="lblValor" runat="server" Text='<%# Eval("tela") %>'></asp:Label></td>
-																<td><asp:Label ID="Label1" runat="server" Text='<%# Eval("alto") %>'></asp:Label></td>
-																<td><asp:Label ID="Label22" runat="server" Text='<%# Eval("ancho") %>'></asp:Label></td>
-																<td><asp:Label ID="Label12" runat="server" Text='<%# Eval("cenefa") %>'></asp:Label></td>
-																<td><asp:Label ID="Label2" runat="server" Text='<%# Eval("es_cenefa_madera") %>'></asp:Label></td>
-																<td><asp:Label ID="Label3" runat="server" Text='<%# Eval("es_encajonada") %>'></asp:Label></td>
-																<td><asp:Label ID="Label4" runat="server" Text='<%# Eval("cantidad_panos") %>'></asp:Label></td>
-																<td><asp:Label ID="Label5" runat="server" Text='<%# Eval("observacion") %>'></asp:Label></td>
-																<td><asp:Label ID="Label6" runat="server" Text='<%# Eval("precio") %>'></asp:Label></td>
+																<td><asp:Label ID="Label8" runat="server" Text='<%# Eval("solicitud") %>'></asp:Label></td>
+																<td><asp:Label ID="Label9" runat="server" Text='<%# Eval("tipo_cortina") %>'></asp:Label></td>
+																<td><asp:Label ID="Label10" runat="server" Text='<%# Eval("tela") %>'></asp:Label></td>
+																<td><asp:Label ID="Label11" runat="server" Text='<%# Eval("alto") %>'></asp:Label></td>
+																<td><asp:Label ID="Label13" runat="server" Text='<%# Eval("ancho") %>'></asp:Label></td>
+																<td><asp:Label ID="Label14" runat="server" Text='<%# Eval("cenefa") %>'></asp:Label></td>
+																<td><asp:Label ID="Label15" runat="server" Text='<%# Eval("es_cenefa_madera") %>'></asp:Label></td>
+																<td><asp:Label ID="Label16" runat="server" Text='<%# Eval("es_encajonada") %>'></asp:Label></td>
+																<td><asp:Label ID="Label17" runat="server" Text='<%# Eval("cantidad_panos") %>'></asp:Label></td>
+																<td><asp:Label ID="Label18" runat="server" Text='<%# Eval("observacion") %>'></asp:Label></td>
+																<td><asp:Label ID="Label19" runat="server" Text='<%# Eval("precio") %>'></asp:Label></td>
 														</tr>
 														</ItemTemplate>
 														</asp:Repeater>
@@ -657,17 +653,17 @@
                                                         <asp:Repeater ID="Repeater4"  runat="server">
 														<ItemTemplate>
 															<tr class="gradeA">
-																<td><asp:Label ID="lblRazonSocial" runat="server" Text='<%# Eval("id") %>'></asp:Label></td>
-																<td><asp:Label ID="lblMedioContacto" runat="server" Text='<%# Eval("tipo_cortina") %>'></asp:Label></td>
-																<td><asp:Label ID="lblValor" runat="server" Text='<%# Eval("tela") %>'></asp:Label></td>
-																<td><asp:Label ID="Label7" runat="server" Text='<%# Eval("ubicacion") %>'></asp:Label></td>
-																<td><asp:Label ID="Label1" runat="server" Text='<%# Eval("alto_mts") %>'></asp:Label></td>
-																<td><asp:Label ID="Label22" runat="server" Text='<%# Eval("ancho_mts") %>'></asp:Label></td>
-																<td><asp:Label ID="Label12" runat="server" Text='<%# Eval("cenefa") %>'></asp:Label></td>
-																<td><asp:Label ID="Label2" runat="server" Text='<%# Eval("numero_panos") %>'></asp:Label></td>
-																<td><asp:Label ID="Label3" runat="server" Text='<%# Eval("precio_unitario_mts") %>'></asp:Label></td>
-																<td><asp:Label ID="Label4" runat="server" Text='<%# Eval("cantidad_mts") %>'></asp:Label></td>
-																<td><asp:Label ID="Label5" runat="server" Text='<%# Eval("monto_total_bs") %>'></asp:Label></td>
+																<td><asp:Label ID="Label20" runat="server" Text='<%# Eval("id") %>'></asp:Label></td>
+																<td><asp:Label ID="Label21" runat="server" Text='<%# Eval("tipo_cortina") %>'></asp:Label></td>
+																<td><asp:Label ID="Label23" runat="server" Text='<%# Eval("tela") %>'></asp:Label></td>
+																<td><asp:Label ID="Label24" runat="server" Text='<%# Eval("ubicacion") %>'></asp:Label></td>
+																<td><asp:Label ID="Label25" runat="server" Text='<%# Eval("alto_mts") %>'></asp:Label></td>
+																<td><asp:Label ID="Label26" runat="server" Text='<%# Eval("ancho_mts") %>'></asp:Label></td>
+																<td><asp:Label ID="Label27" runat="server" Text='<%# Eval("cenefa") %>'></asp:Label></td>
+																<td><asp:Label ID="Label28" runat="server" Text='<%# Eval("numero_panos") %>'></asp:Label></td>
+																<td><asp:Label ID="Label29" runat="server" Text='<%# Eval("precio_unitario_mts") %>'></asp:Label></td>
+																<td><asp:Label ID="Label30" runat="server" Text='<%# Eval("cantidad_mts") %>'></asp:Label></td>
+																<td><asp:Label ID="Label31" runat="server" Text='<%# Eval("monto_total_bs") %>'></asp:Label></td>
 														</tr>
 														</ItemTemplate>
 														</asp:Repeater>
