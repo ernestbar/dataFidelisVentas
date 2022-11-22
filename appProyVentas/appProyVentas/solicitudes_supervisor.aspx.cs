@@ -141,7 +141,7 @@ namespace appProyVentas
                 Clases.Solicitudes obj = new Clases.Solicitudes("I", "", Int64.Parse(ddlCliente.SelectedValue), txtContacto.Text, txtTelefono.Text, txtEmail.Text, txtUbicacion.Text, txtComentarios.Text, cadena, lblUsuario.Text);
                 lblAviso.Text = obj.ABM().Replace("|", "").Replace("0", "").Replace("null", "");
                 MultiView1.ActiveViewIndex = 0;
-                Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD(lblUsuario.Text);
+                Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD("");
                 Repeater1.DataBind();
             }
             else
@@ -149,7 +149,7 @@ namespace appProyVentas
                 Clases.Solicitudes obj = new Clases.Solicitudes("U", lblCodSolicitud.Text, Int64.Parse(ddlCliente.SelectedValue), txtContacto.Text, txtTelefono.Text, txtEmail.Text, txtUbicacion.Text, txtComentarios.Text, cadena, lblUsuario.Text);
                 lblAviso.Text = obj.ABM().Replace("|", "").Replace("0", "").Replace("null", "");
                 MultiView1.ActiveViewIndex = 0;
-                Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD(lblUsuario.Text);
+                Repeater1.DataSource = Clases.Solicitudes.PR_SEG_GET_SOLICITUD("");
                 Repeater1.DataBind();
             }
 
