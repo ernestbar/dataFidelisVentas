@@ -144,7 +144,7 @@
 															<%--	<asp:Button ID="btnEditar" class="btn btn-success btn-sm"  CommandArgument='<%# Eval("dominio") +"|"+Eval("codigo") %>' OnClick="btnEditar_Click" runat="server" Text="Editar" ToolTip="Editar" />
 																<asp:Button ID="btnEliminar" class="btn btn-success btn-sm" CommandArgument='<%# Eval("dominio") +"|"+Eval("codigo") %>' OnClick="btnEliminar_Click" OnClientClick="return confirm('Seguro que desea eliminar el registro???')" runat="server" Text="Eliminar" ToolTip="Borrar registro" />--%>
                                                                 
-																<asp:Button ID="btnEtapas" class="btn btn-success btn-sm" CommandArgument='<%# Eval("SOLICITUD") %>' OnClick="btnEtapas_Click1" runat="server" Text="Ver etapas" ToolTip="Ver etapas" />
+																<asp:Button ID="btnEtapas" class="btn btn-success btn-sm" CommandArgument='<%# Eval("SOLICITUD") + "|" + Eval("correoelectronico") %>' OnClick="btnEtapas_Click1" runat="server" Text="Ver etapas" ToolTip="Ver etapas" />
 															</td>
 															
 															
@@ -420,7 +420,7 @@
 																	<asp:Button ID="btnCancelar" class="btn btn-success btn-sm"  CommandArgument='<%# Eval("solicitud") %>' OnClientClick="return confirm('Seguro que desea CANCELAR la solicitud???')" OnClick="btnCancelar_Click" runat="server" Text="Cancelar" ToolTip="Cancelar etapa" Visible='<%# Eval("CANCELAR").ToString().Equals("SI".ToString()) ? Convert.ToBoolean(1) : Convert.ToBoolean(0) %>' />
 																	<asp:Button ID="btnAprobar" class="btn btn-success btn-sm" CommandArgument='<%# Eval("solicitud") %>' OnClientClick="return confirm('Seguro que desea APROBAR la solicitud???')" OnClick="btnAprobar_Click"  runat="server" Text="Aprobar" ToolTip="Aprobar etapa" Visible='<%# Eval("APROBAR").ToString().Equals("SI".ToString()) ? Convert.ToBoolean(1) : Convert.ToBoolean(0) %>' />
 																	<asp:Button ID="btnGenerar" class="btn btn-success btn-sm" CommandArgument='<%# Eval("solicitud") +"|"+ Eval("id_etapa") %>' OnClick="btnGenerar_Click" runat="server" Text="Generar" ToolTip="Generar PDF" Visible='<%# Eval("GENERAR").ToString().Equals("SI".ToString()) ? Convert.ToBoolean(1) : Convert.ToBoolean(0) %>' />
-																	<asp:Button ID="btnEtapasDetalle" class="btn btn-success btn-sm" CommandArgument='<%# Eval("id_etapa") %>' OnClick="btnEtapasDetalle_Click" runat="server" Text="Detalles" ToolTip="Detalles de la etapa" Visible='<%# Eval("etapa").ToString().Equals("SOLICITUD".ToString()) ? Convert.ToBoolean(1) : Convert.ToBoolean(0) %>'/>
+																	<asp:Button ID="btnEtapasDetalle" class="btn btn-success btn-sm" CommandArgument='<%# Eval("id_etapa") %>' OnClick="btnEtapasDetalle_Click" runat="server" Text="Detalles" ToolTip="Detalles de la etapa" Visible='<%# Eval("DETALLE").ToString().Equals("SI".ToString()) ? Convert.ToBoolean(1) : Convert.ToBoolean(0) %>'/>
 																</td>
 														</tr>
 														</ItemTemplate>
@@ -507,21 +507,21 @@
 			<div class="col-md-6">
 			<asp:Button ID="btnVolverEtapasCotizacion" class="btn-sm btn-info btn-block" OnClick="btnVolverEtapasCotizacion_Click" runat="server" Text="Volver a etapas" />
 				<asp:Button ID="btnExportarPDF"  OnClientClick="exportPDF()" class="btn btn-info btn-block" CausesValidation="false" Visible="true"  runat="server" Text="Exportar a PDF" />
-			
+			<asp:Button ID="btnEnviarCorreo" OnClick="btnEnviarCorreo_Click" OnClientClick="copiar()" class="btn btn-info btn-block"  runat="server" Text="Enviar Email" />
 			</div>
-			<table>
+			<div class="col-md-6">
+				<table>
 				<tr>
 					<th>
-						<asp:Button ID="btnEnviarCorreo" OnClick="btnEnviarCorreo_Click" OnClientClick="copiar()" class="btn btn-info btn-block"  runat="server" Text="Enviar Email" />
-					</th>
-					<th>
-						Correo opcional:
+						Correo de envio:<asp:Label ID="lblCorreoEnvio" runat="server" Text=""></asp:Label> Correo opcional: 
 					</th>
 					<th>
 						<asp:TextBox ID="txtEmailOp" CssClass="form-control" runat="server"></asp:TextBox>
 					</th>
 				</tr>
 			</table>
+			</div>
+			
 			
 			<div id="invoice" style="font-size:small">
 				

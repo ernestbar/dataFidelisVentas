@@ -256,10 +256,11 @@ namespace appProyVentas
             try
             {
                 lblAviso.Text = "";
-                string id = "";
+                string[] id;
                 Button obj = (Button)sender;
-                id = obj.CommandArgument.ToString();
-                Repeater2.DataSource= Clases.Solicitudes.PR_SEG_GET_ETAPAS(id);
+                id = obj.CommandArgument.ToString().Split('|');
+                lblCorreoEnvio.Text = id[1];
+                Repeater2.DataSource= Clases.Solicitudes.PR_SEG_GET_ETAPAS(id[0]);
                 Repeater2.DataBind();
                 MultiView1.ActiveViewIndex = 2;
 
@@ -314,11 +315,44 @@ namespace appProyVentas
         protected void btnEnviarCorreo_Click(object sender, EventArgs e)
         {
             Clases.enviar_correo objC = new Clases.enviar_correo();
-            string resp_email = objC.enviar(txtEmailOp.Text, "Cotizacion Lec Decor", hfDiv.Value, "");
-            if (resp_email == "OK")
-                lblAviso.Text = "Correo enviado correctamente a: " + txtEmailOp.Text;
+            string correos = "";
+            if (lblCorreoEnvio.Text == "")
+            {
+                if (txtEmailOp.Text == "")
+                {
+                    correos="";
+                }
+                else
+                {
+                    correos = txtEmailOp.Text;
+                }
+            }
             else
-                lblAviso.Text = "Hubo un problema al enviar el correo: " + resp_email;
+            {
+                if (txtEmailOp.Text == "")
+                {
+                    correos = lblCorreoEnvio.Text;
+                }
+                else
+                {
+                    correos =lblCorreoEnvio.Text+";"+txtEmailOp.Text;
+                }
+
+            }
+            if (correos == "")
+            {
+                lblAviso.Text = "Debe especificar un correo para el envío.";
+            }
+            else
+            {
+                lblAviso.Text = "";
+                string resp_email = objC.enviar(txtEmailOp.Text, "Cotizacion Lec Decor", hfDiv.Value, "");
+                if (resp_email == "OK")
+                    lblAviso.Text = "Correo enviado correctamente a: " + txtEmailOp.Text;
+                else
+                    lblAviso.Text = "Hubo un problema al enviar el correo: " + resp_email;
+            }
+            
         }
 
         protected void btnVolverEtapasCotizacion_Click(object sender, EventArgs e)

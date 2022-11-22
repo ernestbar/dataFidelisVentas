@@ -257,10 +257,11 @@ namespace appProyVentas
             try
             {
                 lblAviso.Text = "";
-                string id = "";
+                string[] id;
                 Button obj = (Button)sender;
-                id = obj.CommandArgument.ToString();
-                Repeater2.DataSource = Clases.Solicitudes.PR_SEG_GET_ETAPAS(id);
+                id = obj.CommandArgument.ToString().Split('|');
+                lblCorreoEnvio.Text = id[1];
+                Repeater2.DataSource = Clases.Solicitudes.PR_SEG_GET_ETAPAS(id[0]);
                 Repeater2.DataBind();
                 MultiView1.ActiveViewIndex = 2;
 
@@ -315,11 +316,43 @@ namespace appProyVentas
         protected void btnEnviarCorreo_Click(object sender, EventArgs e)
         {
             Clases.enviar_correo objC = new Clases.enviar_correo();
-            string resp_email = objC.enviar(txtEmailOp.Text, "Cotizacion Lec Decor", hfDiv.Value, "");
-            if (resp_email == "OK")
-                lblAviso.Text = "Correo enviado correctamente a: " + txtEmailOp.Text;
+            string correos = "";
+            if (lblCorreoEnvio.Text == "")
+            {
+                if (txtEmailOp.Text == "")
+                {
+                    correos = "";
+                }
+                else
+                {
+                    correos = txtEmailOp.Text;
+                }
+            }
             else
-                lblAviso.Text = "Hubo un problema al enviar el correo: " + resp_email;
+            {
+                if (txtEmailOp.Text == "")
+                {
+                    correos = lblCorreoEnvio.Text;
+                }
+                else
+                {
+                    correos = lblCorreoEnvio.Text + ";" + txtEmailOp.Text;
+                }
+
+            }
+            if (correos == "")
+            {
+                lblAviso.Text = "Debe especificar un correo para el envío.";
+            }
+            else
+            {
+                lblAviso.Text = "";
+                string resp_email = objC.enviar(txtEmailOp.Text, "Cotizacion Lec Decor", hfDiv.Value, "");
+                if (resp_email == "OK")
+                    lblAviso.Text = "Correo enviado correctamente a: " + txtEmailOp.Text;
+                else
+                    lblAviso.Text = "Hubo un problema al enviar el correo: " + resp_email;
+            }
         }
 
         protected void btnVolverEtapasCotizacion_Click(object sender, EventArgs e)
@@ -355,8 +388,8 @@ namespace appProyVentas
                 foreach (DataRow dr in dt.Rows)
                 {
                     ListItem item1 = new ListItem();
-                    item1.Text = dr["UBICACION_VENTANA"] + " - " + dr["tipo_cortina"] + " - " + dr["tela"] + " - " + dr["alto"] + " - " + dr["ancho"] + " - " + dr["cenefa"] + " - " + dr["es_cenefa_madera"] + " - " + dr["es_encajonada"] + " - " + dr["cantidad_panos"] + " - " + dr["observacion"];
-                    item1.Value = dr["UBICACION_VENTANA"] + ";" + dr["tipo_cortina"] + ";" + dr["tela"] + ";" + dr["alto"] + ";" + dr["ancho"] + ";" + dr["cenefa"] + ";" + dr["es_cenefa_madera"] + ";" + dr["es_encajonada"] + ";" + dr["cantidad_panos"] + ";" + dr["observacion"];
+                    item1.Text = dr["UBICACION_VENTANA"] + " - " + dr["tipo_cortina"] + " - " + dr["tela"] + " - " + dr["alto"].ToString().Replace(",", ".") + " - " + dr["ancho"].ToString().Replace(",", ".") + " - " + dr["cenefa"] + " - " + dr["es_cenefa_madera"] + " - " + dr["es_encajonada"] + " - " + dr["cantidad_panos"].ToString().Replace(",", ".") + " - " + dr["observacion"];
+                    item1.Value = dr["UBICACION_VENTANA"] + ";" + dr["tipo_cortina"] + ";" + dr["tela"] + ";" + dr["alto"].ToString().Replace(",", ".") + ";" + dr["ancho"].ToString().Replace(",", ".") + ";" + dr["cenefa"] + ";" + dr["es_cenefa_madera"] + ";" + dr["es_encajonada"] + ";" + dr["cantidad_panos"].ToString().Replace(",", ".") + ";" + dr["observacion"];
                     lbItems.Items.Add(item1);
                 }
                 MultiView1.ActiveViewIndex = 1;
