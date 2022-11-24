@@ -1,21 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Principal.Master" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="appProyVentas.dashboard" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-	<asp:ObjectDataSource ID="odsTotal" runat="server" SelectMethod="PR_GET_DASHBOARD" TypeName="appProyVentas.Clases.Dashboard">
+	<asp:ObjectDataSource ID="odsTotal" runat="server" SelectMethod="PR_GET_DASHBOARD2" TypeName="appProyVentas.Clases.Dashboard">
         <SelectParameters>
             <asp:Parameter Name="PV_ESTADO" DefaultValue="TODOS" />
         </SelectParameters>
     </asp:ObjectDataSource>
-	<asp:ObjectDataSource ID="odsFinalizados" runat="server" SelectMethod="PR_GET_DASHBOARD" TypeName="appProyVentas.Clases.Dashboard">
+	<asp:ObjectDataSource ID="odsFinalizados" runat="server" SelectMethod="PR_GET_DASHBOARD2" TypeName="appProyVentas.Clases.Dashboard">
         <SelectParameters>
             <asp:Parameter Name="PV_ESTADO" DefaultValue="FINALIZACION" />
         </SelectParameters>
     </asp:ObjectDataSource>
-	<asp:ObjectDataSource ID="odsPreAprobados" runat="server" SelectMethod="PR_GET_DASHBOARD" TypeName="appProyVentas.Clases.Dashboard">
+	<asp:ObjectDataSource ID="odsPreAprobados" runat="server" SelectMethod="PR_GET_DASHBOARD2" TypeName="appProyVentas.Clases.Dashboard">
         <SelectParameters>
             <asp:Parameter Name="PV_ESTADO" DefaultValue="PRE APROBADOS" />
         </SelectParameters>
     </asp:ObjectDataSource>
-	<asp:ObjectDataSource ID="odsCanceladoTotal" runat="server" SelectMethod="PR_GET_DASHBOARD" TypeName="appProyVentas.Clases.Dashboard">
+	<asp:ObjectDataSource ID="odsCanceladoTotal" runat="server" SelectMethod="PR_GET_DASHBOARD2" TypeName="appProyVentas.Clases.Dashboard">
         <SelectParameters>
             <asp:Parameter Name="PV_ESTADO" DefaultValue="CANCELADO TOTAL" />
         </SelectParameters>
@@ -36,11 +36,11 @@
 									<div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"></i></div>
 									<div class="stats-content">
 										<div class="stats-title">TOTAL SOLICITUDES</div>
-										<div class="stats-number"> <asp:Label ID="Label1" runat="server" Text='<%# Eval("cantidad") %>'></asp:Label></div>
+										<div class="stats-number"> <asp:Label ID="Label1" runat="server" Text='<%# "Solicitudes del mes = " + Eval("ventas_mes") %>'></asp:Label></div>
 										<div class="stats-progress progress">
-											<div class="progress-bar" style="width: 100%;"></div>
+											<div class="progress-bar" style='<%# Eval("estilo") %>'></div>
 										</div>
-										<div class="stats-desc"><asp:Label ID="Label2" runat="server" Text='<%# "PERIODO: " + Eval("periodo") %>'></asp:Label></div>
+										<div class="stats-desc"><asp:Label ID="Label2" runat="server" Text='<%# Eval("mensaje") %>'></asp:Label></div>
 									</div>
 								</div>
 							</div>
@@ -56,11 +56,11 @@
 						<div class="stats-icon stats-icon-lg"><i class="fa fa-dollar-sign fa-fw"></i></div>
 						<div class="stats-content">
 							<div class="stats-title">FINALIZADOS</div>
-							<div class="stats-number"> <asp:Label ID="Label1" runat="server" Text='<%# Eval("cantidad") %>'></asp:Label></div>
+							<div class="stats-number"> <asp:Label ID="Label1" runat="server" Text='<%# "Finalizados del mes = " + Eval("ventas_mes") %>'></asp:Label></div>
 										<div class="stats-progress progress">
-											<div class="progress-bar" style="width: 100%;"></div>
+											<div class="progress-bar" style='<%# Eval("estilo") %>'></div>
 										</div>
-										<div class="stats-desc"><asp:Label ID="Label2" runat="server" Text='<%# "PERIODO: " + Eval("periodo") %>'></asp:Label></div>
+										<div class="stats-desc"><asp:Label ID="Label2" runat="server" Text='<%# Eval("mensaje") %>'></asp:Label></div>
 						</div>
 					</div>
 				</div>
@@ -76,11 +76,11 @@
 						<div class="stats-icon stats-icon-lg"><i class="fa fa-archive fa-fw"></i></div>
 						<div class="stats-content">
 							<div class="stats-title">PRE APROBADOS</div>
-							<div class="stats-number"> <asp:Label ID="Label1" runat="server" Text='<%# Eval("cantidad") %>'></asp:Label></div>
+							<div class="stats-number"> <asp:Label ID="Label1" runat="server" Text='<%# "Pre Aprobados del mes = " + Eval("ventas_mes") %>'></asp:Label></div>
 										<div class="stats-progress progress">
-											<div class="progress-bar" style="width: 100%;"></div>
+											<div class="progress-bar" style='<%# Eval("estilo") %>'></div>
 										</div>
-										<div class="stats-desc"><asp:Label ID="Label2" runat="server" Text='<%# "PERIODO: " + Eval("periodo") %>'></asp:Label></div>
+										<div class="stats-desc"><asp:Label ID="Label2" runat="server" Text='<%# Eval("mensaje") %>'></asp:Label></div>
 						</div>
 					</div>
 				</div>
@@ -96,11 +96,11 @@
 						<div class="stats-icon stats-icon-lg"><i class="fa fa-comment-alt fa-fw"></i></div>
 						<div class="stats-content">
 							<div class="stats-title">CANCELADO TOTAL</div>
-							<div class="stats-number"> <asp:Label ID="Label1" runat="server" Text='<%# Eval("cantidad") %>'></asp:Label></div>
+							<div class="stats-number"> <asp:Label ID="Label1" runat="server" Text='<%# "Cancelados del mes = " + Eval("ventas_mes") %>'></asp:Label></div>
 										<div class="stats-progress progress">
-											<div class="progress-bar" style="width: 100%;"></div>
+											<div class="progress-bar" style='<%# Eval("estilo") %>'></div>
 										</div>
-										<div class="stats-desc"><asp:Label ID="Label2" runat="server" Text='<%# "PERIODO: " + Eval("periodo") %>'></asp:Label></div>
+										<div class="stats-desc"><asp:Label ID="Label2" runat="server" Text='<%# Eval("mensaje") %>'></asp:Label></div>
 						</div>
 					</div>
 				</div>
